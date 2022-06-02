@@ -17,10 +17,10 @@ object Libs{
 
     object AndroidX {
 
-        const val coreKtx = "androidx.core:core-ktx:1.7.0"
+        const val coreKtx = "androidx.core:core-ktx:1.8.0"
         const val appCompat = "androidx.appcompat:appcompat:1.4.1"
         const val recyclerView = "androidx.recyclerview:recyclerview:1.2.1"
-        const val material = "com.google.android.material:material:1.6.0"
+        const val material = "com.google.android.material:material:1.7.0-alpha02"
         const val constraintLayout = "androidx.constraintlayout:constraintlayout:2.1.3"
 
         object Activity {
@@ -60,10 +60,9 @@ object Libs{
         }
     }
 
-    object Glide {
-        private const val version = "4.13.2"
-        const val glide = "com.github.bumptech.glide:glide:$version"
-        const val compiler = "com.github.bumptech.glide:compiler:$version"
+    object Coil {
+        private const val version = "2.1.0"
+        const val coil = "io.coil-kt:coil:$version"
     }
 
     object OkHttp3 {
@@ -74,7 +73,12 @@ object Libs{
     object Retrofit {
         private const val version = "2.9.0"
         const val retrofit = "com.squareup.retrofit2:retrofit:$version"
-        const val converterGson = "com.squareup.retrofit2:converter-gson:$version"
+        const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version"
+    }
+
+    object Moshi{
+        private const val version = "1.13.0"
+        const val moshi = "com.squareup.moshi:moshi-kotlin:$version"
     }
 
     object Arrow {
