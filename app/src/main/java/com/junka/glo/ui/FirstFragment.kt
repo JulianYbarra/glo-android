@@ -1,4 +1,4 @@
-package com.junka.glo
+package com.junka.glo.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
