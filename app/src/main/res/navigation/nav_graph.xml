@@ -3,13 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/homeDest">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/homeDest"
         android:name="com.junka.glo.ui.home.HomeFragment"
-        android:label="@string/first_fragment_label"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeDest_to_productDetailDest"
+            app:destination="@id/productDetailDest" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productDetailDest"
+        android:name="com.junka.glo.ui.product.ProductDetailFragment"
+        tools:layout="@layout/fragment_product_detail" >
+        <argument
+            android:name="id"
+            app:argType="long" />
     </fragment>
 
 </navigation>

@@ -1,17 +1,19 @@
 package com.junka.glo.data
 
-import com.junka.glo.domain.Product
-import com.junka.glo.domain.Resource
+import com.junka.glo.data.common.networkBoundResource
 import javax.inject.Inject
 
 class ProductRepository @Inject constructor(
-    private val productDataSource: ProductRemoteDataSource
+    private val productLocalDataSource: ProductLocalDataSource,
+    private val productRemoteDataSource: ProductRemoteDataSource
 ) {
 
-    suspend fun getProductList() : Resource<List<Product>> {
-       productDataSource.getProductList().fold<Nothing>(
-           ifLeft = { return Resource.Failure(it) },
-           ifRight = { return Resource.Success(it) }
-       )
-    }
+    fun getProductList(force : Boolean) = networkBoundResource(
+        query = { productLocalDataSource.getList() },
+        fetch = { productRemoteDataSource.getProductList() },
+        saveFetchResult = { products -> productLocalDataSource.update(products)},
+        shouldFetch = { local -> local.isEmpty() || force }
+    )
+
+    fun getProductById(id : Long) = productLocalDataSource.getById(id)
 }

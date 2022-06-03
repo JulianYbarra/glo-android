@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.junka.glo.R
 import com.junka.glo.databinding.FragmentHomeBinding
@@ -18,7 +19,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private lateinit var binding: FragmentHomeBinding
     private val viewModel by viewModels<HomeViewModel>()
 
-    private val productAdapter by lazy { ProductAdapter(){} }
+    private val productAdapter by lazy { ProductAdapter(){
+        val action = HomeFragmentDirections.actionHomeDestToProductDetailDest(it.id)
+        findNavController().navigate(action)
+    } }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -27,7 +31,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.setUi()
 
         launchAndCollect(viewModel.state){ setUiState(it) }
-
     }
 
     private fun FragmentHomeBinding.setUi(){
@@ -35,10 +38,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = productAdapter
         }
+        swipeToRefresh.setOnRefreshListener {
+            viewModel.refresh(true)
+        }
     }
 
     private fun setUiState(uiState: HomeViewModel.UiState) = with(binding){
         progress.isVisible = uiState.loading
+        swipeToRefresh.isRefreshing = uiState.loading
         uiState.products?.let { productAdapter.submitList(it) }
         uiState.error?.let { Toast.makeText(requireContext(), "error", Toast.LENGTH_SHORT).show() }
     }

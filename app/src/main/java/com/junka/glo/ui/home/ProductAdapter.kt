@@ -12,7 +12,8 @@ import com.junka.glo.ui.common.basicDiffUtil
 import com.junka.glo.ui.common.inflate
 
 class ProductAdapter(
-    private val onItemClick : (Product) -> Unit) : ListAdapter<Product, ProductAdapter.ViewHolder>(basicDiffUtil()) {
+    private val onItemClick : (Product) -> Unit)
+    : ListAdapter<Product, ProductAdapter.ViewHolder>(basicDiffUtil{ old, new -> old.id == new.id }) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = parent.inflate(R.layout.view_product, false)
@@ -33,7 +34,7 @@ class ProductAdapter(
             descriptionTv.text = product.description
             imageIv.load(product.image){
                 crossfade(true)
-                placeholder(R.drawable.ic_launcher_background)
+                error(R.drawable.ic_launcher_background)
             }
         }
 

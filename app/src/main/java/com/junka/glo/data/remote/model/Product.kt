@@ -17,6 +17,6 @@ data class Product(
 )
 
 
-fun Product.toDomainModel() = DomainProduct(description, image, title)
+fun Product.toDomainModel() = DomainProduct(0,title, description, image)
 
 fun List<Product>.toDomainModel() = map{it.toDomainModel()}

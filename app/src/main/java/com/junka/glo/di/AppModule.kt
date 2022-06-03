@@ -1,5 +1,8 @@
 package com.junka.glo.di
 
+import android.app.Application
+import androidx.room.Room
+import com.junka.glo.data.local.LocalDataBase
 import com.junka.glo.data.remote.RemoteService
 import dagger.Module
 import dagger.Provides
@@ -24,6 +27,19 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideDataBase(application: Application) = Room.databaseBuilder(
+        application,
+        LocalDataBase::class.java,
+        "glo-db"
+    ).fallbackToDestructiveMigration()
+        .build()
+
+    @Provides
+    @Singleton
+    fun provideProductDao(dataBase: LocalDataBase) = dataBase.productDao()
+
+    @Provides
+    @Singleton
     fun provideOkHttpClient(): OkHttpClient = HttpLoggingInterceptor().run {
         level = HttpLoggingInterceptor.Level.BODY
         OkHttpClient.Builder().addInterceptor(this).build()
@@ -32,7 +48,6 @@ object AppModule {
     @Provides
     @Singleton
     fun provideRemoteService(@ApiUrl apiUrl: String, okHttpClient: OkHttpClient): RemoteService {
-
         return Retrofit.Builder()
             .baseUrl(apiUrl)
             .client(okHttpClient)
