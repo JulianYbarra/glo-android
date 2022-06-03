@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.7">
-      <module name="Glo-android.buildSrc" target="11" />
-      <module name="Glo-android.buildSrc.main" target="11" />
-      <module name="Glo-android.buildSrc.test" target="11" />
-      <module name="GLo.app" target="11" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.7" />
   </component>
 </project>
