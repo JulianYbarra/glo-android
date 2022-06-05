@@ -2,8 +2,8 @@ package com.junka.glo.data
 
 import app.cash.turbine.test
 import arrow.core.right
-import com.junka.glo.domain.Product
 import com.junka.glo.domain.Resource
+import com.junka.glo.testshared.sampleProduct
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking
@@ -72,13 +72,4 @@ class ProductRepositoryTest {
 
         verify(localDataSource).update(remoteProduct)
     }
-}
-
-private fun sampleProduct(vararg ids: Long) = ids.map {
-    Product(
-        id = it,
-        title = "Title $it",
-        description = "Description $it",
-        image = "Image $it"
-    )
 }
