@@ -38,7 +38,7 @@ class ProductDetailViewModelTest{
     }
 
     @Test
-    fun  `Ui is updated with the product`() = runTest{
+    fun `Ui is updated with the product`() = runTest{
         vm.state.test {
             assertEquals(UiState(),awaitItem())
             assertEquals(UiState(loading = true),awaitItem())
