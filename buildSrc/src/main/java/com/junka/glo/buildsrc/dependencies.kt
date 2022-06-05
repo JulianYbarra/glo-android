@@ -110,4 +110,8 @@ object Libs{
     object JavaX {
         const val inject = "javax.inject:javax.inject:1"
     }
+
+    object Turbine{
+        const val turbine = "app.cash.turbine:turbine:0.7.0"
+    }
 }

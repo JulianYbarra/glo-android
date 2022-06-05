@@ -11,7 +11,7 @@ class ProductRepository @Inject constructor(
     fun getProductList(force : Boolean) = networkBoundResource(
         query = { productLocalDataSource.getList() },
         fetch = { productRemoteDataSource.getProductList() },
-        saveFetchResult = { products -> productLocalDataSource.update(products)},
+        saveFetchResult = { products -> productLocalDataSource.update(products) },
         shouldFetch = { local -> local.isEmpty() || force }
     )
 
