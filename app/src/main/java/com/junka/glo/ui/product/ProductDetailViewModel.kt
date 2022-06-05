@@ -16,7 +16,7 @@ import javax.inject.Inject
 class ProductDetailViewModel @Inject constructor(
     @ProductId id : Long,
     private val getProductByIdUseCase: GetProductByIdUseCase
-)  : ViewModel() {
+) : ViewModel() {
 
     private val _state = MutableStateFlow(UiState())
     val state = _state.asStateFlow()

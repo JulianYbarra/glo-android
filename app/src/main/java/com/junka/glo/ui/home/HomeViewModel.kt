@@ -41,7 +41,7 @@ class HomeViewModel @Inject constructor(
         }
     }
 
-    class UiState(
+    data class UiState(
         val loading: Boolean = false,
         val products: List<Product>? = null,
         val error: Error? = null
