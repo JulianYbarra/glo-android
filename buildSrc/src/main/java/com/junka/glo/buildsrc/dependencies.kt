@@ -74,6 +74,7 @@ object Libs{
     object OkHttp3 {
         private const val version = "4.9.3"
         const val loginInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
+        const val mockWebServer = "com.squareup.okhttp3:mockwebserver:$version"
     }
 
     object Retrofit {
@@ -98,8 +99,8 @@ object Libs{
         const val android = "com.google.dagger:hilt-android:$version"
         const val compiler = "com.google.dagger:hilt-compiler:$version"
         const val gradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
-        const val work = "androidx.hilt:hilt-work:1.0.0"
         const val androidCompiler = "androidx.hilt:hilt-compiler:1.0.0"
+        const val test = "com.google.dagger:hilt-android-testing:$version"
     }
 
     object JUnit {

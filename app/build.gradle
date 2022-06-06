@@ -18,7 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.junka.glo.di.HiltTestRunner"
     }
 
     buildTypes {
@@ -64,7 +64,6 @@ dependencies {
 
 
     implementation Libs.Hilt.android
-    implementation Libs.Hilt.work
     kapt Libs.Hilt.compiler
     kapt Libs.Hilt.androidCompiler
 
@@ -88,6 +87,7 @@ dependencies {
     testImplementation Libs.Mockito.kotlin
     testImplementation Libs.Mockito.inline
     testImplementation Libs.Kotlin.Coroutines.test
+
     testImplementation Libs.Turbine.turbine
 
     androidTestImplementation Libs.AndroidX.Test.Ext.junit
@@ -95,5 +95,8 @@ dependencies {
     androidTestImplementation Libs.AndroidX.Test.runner
     androidTestImplementation Libs.AndroidX.Test.rules
     androidTestImplementation Libs.Kotlin.Coroutines.test
+    androidTestImplementation Libs.Hilt.test
     kaptAndroidTest Libs.Hilt.compiler
+
+    androidTestImplementation Libs.OkHttp3.mockWebServer
 }
